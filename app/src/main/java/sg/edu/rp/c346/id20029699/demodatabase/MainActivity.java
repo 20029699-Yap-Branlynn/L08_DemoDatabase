@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     ListView lw;
     EditText etTask, etDate;
 
+    Boolean order = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,8 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 tvResults.setText(txt);
 
                 DBHelper db2 = new DBHelper(MainActivity.this);
-                ArrayList<Task> al2 = db2.getTasks();
+                ArrayList<Task> al2 = db2.getTasks(order);
                 db2.close();
+                order = !order;
                 ArrayAdapter list = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, al2);
 
                 lw.setAdapter(list);
