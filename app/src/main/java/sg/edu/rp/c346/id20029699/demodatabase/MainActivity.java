@@ -2,6 +2,7 @@ package sg.edu.rp.c346.id20029699.demodatabase;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import java.io.*;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,12 +71,16 @@ public class MainActivity extends AppCompatActivity {
                 tvResults.setText(txt);
 
                 DBHelper db2 = new DBHelper(MainActivity.this);
-                ArrayList<Task> a1 = new ArrayList<Task>(db2.getTasks());
+                ArrayList<Task> al2 = db2.getTasks();
                 db2.close();
-                ArrayAdapter list = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, a1);
+                ArrayAdapter list = new ArrayAdapter(MainActivity.this, android.R.layout.simple_list_item_1, al2);
+
                 lw.setAdapter(list);
-            }
+
+                }
         });
+
+
 
     }
 }

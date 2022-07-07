@@ -59,6 +59,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_DATE, date);
         // Insert the row into the TABLE_TASK
         db.insert(TABLE_TASK, null, values);
+
         // Close the database connection
         db.close();
     }
@@ -99,7 +100,8 @@ public class DBHelper extends SQLiteOpenHelper {
         String selectQuery = "SELECT " + COLUMN_ID + ", "
                 + COLUMN_DESCRIPTION + ", "
                 + COLUMN_DATE
-                + " FROM " + TABLE_TASK;
+                + " FROM " + TABLE_TASK
+                + " ORDER BY " + COLUMN_DESCRIPTION + " ASC";
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -118,4 +120,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return tasks;
     }
 
+    public void delete(String D) {
+        String delete = "DELETE FROM " + TABLE_TASK;
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(delete);
+    }
 }
